@@ -36,7 +36,7 @@ NodeSoundPlayer/
 
 ### 📝 配置文件示例 (config.json)
 
-\`\`\`json
+```json
 {
   "categories": {
     "category1": [
@@ -48,7 +48,7 @@ NodeSoundPlayer/
     ]
   }
 }
-\`\`\`
+```
 
 ---
 
@@ -56,12 +56,12 @@ NodeSoundPlayer/
 
 ### 1️⃣ GetCategories 工具
 
-**工具名称**：\`getCategories\`  
+**工具名称**：`getCategories`  
 **功能**：返回系统中所有声音分类的列表  
 **输入参数**：无（空对象）  
 **输出**：一个包含分类名称的数组
 
-\`\`\`javascript
+```javascript
 import { z } from "zod";
 import { promises as fs } from "fs";
 
@@ -89,25 +89,25 @@ export const getCategories = {
         content: [
           {
             type: "text",
-            text: \`Error fetching categories: \${error.message}\`,
+            text: `Error fetching categories: \${error.message}`,
           },
         ],
       };
     }
   },
 };
-\`\`\`
+```
 
 ### 2️⃣ PlayCategory 工具
 
-**工具名称**：\`playCategory\`  
+**工具名称**：`playCategory`  
 **功能**：播放指定分类中的所有声音  
 **输入参数**：
-- \`category\`：分类名称（字符串，必需）
-- \`loop\`：是否循环播放（布尔值，可选，默认为 false）
-- \`interval\`：声音之间的播放间隔（秒，数字，可选，默认为 0）
+- `category`：分类名称（字符串，必需）
+- `loop`：是否循环播放（布尔值，可选，默认为 false）
+- `interval`：声音之间的播放间隔（秒，数字，可选，默认为 0）
 
-\`\`\`javascript
+```javascript
 import { z } from "zod";
 import { promises as fs } from "fs";
 import playSound from "play-sound";
@@ -146,7 +146,7 @@ export const playCategory = {
 
       if (!sounds) {
         return {
-          content: [{ type: "text", text: \`Category "\${category}" not found\` }],
+          content: [{ type: "text", text: `Category "\${category}" not found` }],
         };
       }
 
@@ -161,19 +161,19 @@ export const playCategory = {
 
       return {
         content: [
-          { type: "text", text: \`Played all sounds in category "\${category}"\` }
+          { type: "text", text: `Played all sounds in category "\${category}"` }
         ],
       };
     } catch (error) {
       return {
         content: [
-          { type: "text", text: \`Error playing category "\${category}": \${error.message}\` }
+          { type: "text", text: `Error playing category "\${category}": \${error.message}` }
         ],
       };
     }
   },
 };
-\`\`\`
+```
 
 ---
 
@@ -182,15 +182,15 @@ export const playCategory = {
 ### 获取分类信息
 
 **示例请求**：
-\`\`\`json
+```json
 {
   "tool": "getCategories",
   "input": {}
 }
-\`\`\`
+```
 
 **示例响应**：
-\`\`\`json
+```json
 {
   "content": [
     {
@@ -199,12 +199,12 @@ export const playCategory = {
     }
   ]
 }
-\`\`\`
+```
 
 ### 播放分类
 
 **示例请求**：
-\`\`\`json
+```json
 {
   "tool": "playCategory",
   "input": {
@@ -213,10 +213,10 @@ export const playCategory = {
     "interval": 1
   }
 }
-\`\`\`
+```
 
 **示例响应**：
-\`\`\`json
+```json
 {
   "content": [
     {
@@ -225,7 +225,7 @@ export const playCategory = {
     }
   ]
 }
-\`\`\`
+```
 
 ---
 
@@ -241,7 +241,7 @@ export const playCategory = {
 
 ## 📦 依赖配置 (package.json)
 
-\`\`\`json
+```json
 {
   "name": "NodeSoundPlayer",
   "version": "1.0.0",
@@ -257,5 +257,5 @@ export const playCategory = {
     "start": "node index.js"
   }
 }
-\`\`\`
+```
 
